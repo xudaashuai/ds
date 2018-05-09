@@ -18,9 +18,12 @@ deploy:
   release: myproduct-v$(appveyor_build_version)
   description: 'Release description'
   provider: GitHub
+
   auth_token:
     secure: szQNdmLNz3ORHJoiuk+gvPiBVSdRAnY59vzCeNDLYdy2pM/GEgMx6as8QH9xJHw+
-  artifact: /build\\.*\.exe/
+  artifact: build\ds Setup 0.0.0.exe
+
+  # artifact: /build\\.*\.exe/
   draft: false
   prerelease: false
   on:
