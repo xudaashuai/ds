@@ -20,7 +20,7 @@ deploy:
   provider: GitHub
 
   auth_token:
-    secure: RQpTt/R3QfMR7cFq1P5aVEPfwmAHNJ293a0F2WPSYVsBYipNgQ78XwjA6STyduyO
+    secure: RoaPTwXLBEnbUg5aICoYT0SKUO0ia2rIGqNMsi8HiqhOlrsIATHqiF4xg7z9cv9n
   artifact: build\*.exe
 
   # artifact: /build\\.*\.exe/
