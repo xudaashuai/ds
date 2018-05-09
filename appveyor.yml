@@ -14,15 +14,17 @@ build_script:
   - npm run build
 
 test: off
+artifacts:
+- path: build/*.exe
+  name: myartifact
 deploy:
   release: myproduct-v$(appveyor_build_version)
   description: 'Release description'
   provider: GitHub
-
+  artifacts: myartifact
   auth_token:
     secure: RoaPTwXLBEnbUg5aICoYT0SKUO0ia2rIGqNMsi8HiqhOlrsIATHqiF4xg7z9cv9n
-  artifacts:
-    - path: build\*.exe
+
   # artifact: /build\\.*\.exe/
   draft: false
   prerelease: false
