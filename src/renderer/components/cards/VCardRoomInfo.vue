@@ -32,18 +32,21 @@
 </template>
 
 <script>
+  import m from '../mixins/card'
   export default {
     name: "v-card-room-info",
     data() {
       return {
       }
     },
+    mixins:[m],
     computed:{
       room(){
         return this.$store.state.room
       }
     },
     mounted() {
+      this.hello()
     }
   }
 </script>
