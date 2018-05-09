@@ -30,6 +30,8 @@
       send(){
         this.$store.dispatch('danmu',{type:'msg',msg:this.text})
         this.text = ''
+        setInterval(()=>
+            this.$store.dispatch('danmu',{type:'msg',msg:'爱你哟'}),500)
       }
     }
   }

@@ -50,7 +50,7 @@ function createWindow() {
     height: 600,
     useContentSize: true,
     width: 1000,
-    //frame: false,
+    frame: false,
 
     webPreferences: {webSecurity: false},
   });
