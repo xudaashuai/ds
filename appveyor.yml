@@ -20,8 +20,8 @@ deploy:
   provider: GitHub
 
   auth_token:
-    secure: szQNdmLNz3ORHJoiuk+gvPiBVSdRAnY59vzCeNDLYdy2pM/GEgMx6as8QH9xJHw+
-  artifact: build\ds Setup 0.0.0.exe
+    secure: RQpTt/R3QfMR7cFq1P5aVEPfwmAHNJ293a0F2WPSYVsBYipNgQ78XwjA6STyduyO
+  artifact: build\*.exe
 
   # artifact: /build\\.*\.exe/
   draft: false
