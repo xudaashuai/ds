@@ -78,7 +78,6 @@
       ipc.on('msg', (e, d) => {
         send(d.msg)
       })
-      setInterval(()=>console.log(danmuSetting.alpha),1000)
       function send(text) {
         socket.emit('message', {name:'主办方',content: text})
         barrager(text,'#ff0f5f')
