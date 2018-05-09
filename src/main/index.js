@@ -58,13 +58,13 @@ function createWindow() {
 
     width: 1000, height: 600,
     transparent: true,
-    //frame: false,
-    //alwaysOnTop: true,
-    //skipTaskbar: true,
-    //fullscreen: true,
+    frame: false,
+    alwaysOnTop: true,
+    skipTaskbar: true,
+    fullscreen: true,
     webPreferences: {webSecurity: false},
   });
-  //danmuWindow.setIgnoreMouseEvents(true);
+  danmuWindow.setIgnoreMouseEvents(true);
   danmuWindow.loadURL(danmuUrl);
   mainWindow.loadURL(winURL);
   danmuWindow.on('closed', () => {

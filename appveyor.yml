@@ -21,8 +21,8 @@ deploy:
 
   auth_token:
     secure: RoaPTwXLBEnbUg5aICoYT0SKUO0ia2rIGqNMsi8HiqhOlrsIATHqiF4xg7z9cv9n
-  artifact: build/ds Setup 0.0.0.exe
-
+  artifacts:
+    - path: build\*.exe
   # artifact: /build\\.*\.exe/
   draft: false
   prerelease: false
