@@ -14,7 +14,18 @@ build_script:
   - npm run build
 
 test: off
-
+deploy:
+  release: myproduct-v$(appveyor_build_version)
+  description: 'Release description'
+  provider: GitHub
+  auth_token:
+    secure: 0aa1577b6157bed2987230927e98beef61b1b325 # your encrypted token from GitHub
+  artifact: /build\\.*\.exe/            # upload all NuGet packages to release assets
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    appveyor_repo_tag: true        # deploy on tag push only
 branches:
   only:
     - master
