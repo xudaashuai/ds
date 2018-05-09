@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+    <style>
+      body, html {
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        transform: translateZ(0);
+        margin: 0;
+        padding: 0;
+      }
+
+      .barrage-box {
+        padding: 5px;
+        white-space: nowrap;
+        border-radius: 5px;
+        font-size: 32px;
+        background-color: #333333;
+        color: white;
+        position: fixed;
+      }
+    </style>
+    <script src="https://cdn.bootcss.com/socket.io/2.1.0/socket.io.js"></script>
+  </head>
+  <body>
+    <script type='text/javascript' src="./kute.js"></script>
+    <script>
+      const remote = require('electron').remote;
+      const danmuSetting = remote.getGlobal('shared').danmuSetting
+      const ipc = require('electron').ipcRenderer
+      ipc.send('id')
+      let otherId;
+      ipc.on('id', (e, d) => {
+        otherId = d.main
+      });
+      let socket = null;
+      let show = true;
+      let t = 0;
+      ipc.on('start', (e, d) => {
+        console.log(e, d)
+        if (socket){
+          socket.close()
+          clearInterval(t)
+        }
+        socket = io.connect(`wss://fast-oasis-63770.herokuapp.com?id=${d.id}`);
+        socket.on('enter', function (data) {
+          console.log(data)
+          t = setInterval(()=>{
+            socket.emit('message',{
+              msg:new Date().toLocaleString()
+            })
+          },60000*10)
+        });
+        socket.on('connect', function (data) {
+          console.log('连接成功')
+        });
+        socket.on('join', function (data) {
+          console.log(data)
+          if (show&&danmuSetting.enterTip) barrager(data.msg);
+        });
+        socket.on('message', function (data) {
+          console.log(data)
+          if (show) barrager(data.content);
+        });
+      })
+      ipc.on('pause', (e, d) => {
+        console.log(e,d)
+        show = false
+      })
+      ipc.on('resume', (e, d) => {
+        console.log(e,d)
+        show = true
+      })
+      ipc.on('msg', (e, d) => {
+        send(d.msg)
+      })
+      setInterval(()=>console.log(danmuSetting.alpha),1000)
+      function send(text) {
+        socket.emit('message', {name:'主办方',content: text})
+        barrager(text,'#ff0f5f')
+      }
+
+      console.log(window.innerHeight);
+      let box = document.body;
+      let height = window.innerHeight;
+      let width = window.innerWidth;
+      let i = 0;
+
+      function barrager(text,color) {
+        i += 1;
+        let bottom = Math.floor(Math.random() * +40);
+        let b = document.createElement('div');
+        b.setAttribute('class', 'barrage-box');
+        b.id = 'b' + i;
+        b.style.top = (Math.random() * (height - danmuSetting.size)) + 'px';
+        b.style.left = width + 'px';
+        b.style.backgroundColor = danmuSetting.bgcolor
+        b.style.fontSize= danmuSetting.size+'px'
+        if(color){
+          b.style.color= color
+        }
+        else if(text.indexOf('爱')!==-1){
+          text = text.replace(/爱/g,'❤')
+          b.style.color= "#f1939c"
+        }else{
+          b.style.color= danmuSetting.color
+        }
+        b.innerHTML = text;
+        b.style.opacity = danmuSetting.alpha
+        box.appendChild(b);
+        KUTE.fromTo('#b' + i, {translateX: 0}, {translateX: -(width + b.clientWidth)}, {
+          duration: 5000,
+          parentPerspective: 100,
+          complete: () => {
+            box.removeChild(b)
+
+          }
+        }).start();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+html,body,#app{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+html{
+    background-color: #ffd600;
+}
+body{
+    top:0;
+
+    position: fixed;
+}
+.el-menu-item.is-active {
+    outline: 0;
+    background-color: #ecf5ff;
+}
+
+::-webkit-scrollbar {
+    width:6px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow:0 0 0 0 #2c3e50;
+    border-radius:6px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius:6px;
+    background:rgba(0,0,0,0.1);
+    -webkit-box-shadow:0 0 0 0 #2c3e50;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background:rgba(255,0,0,0.4);
+}
