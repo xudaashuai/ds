@@ -1,22 +1,13 @@
-# ds
-
-> An electron-vue project
-
-#### Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron application for production
-npm run build
+# ds [![Build status](https://ci.appveyor.com/api/projects/status/h667x6xu840mau7s?svg=true)](https://ci.appveyor.com/project/xudaashuai/ds)
 
 
-```
+> 线下弹幕解决方案
 
----
+请至release页面下载最新版本。
 
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+##Thanks
+- Vue
+- Electron
+- Electron-Vue
+- Element-ui
+- Socket.io
